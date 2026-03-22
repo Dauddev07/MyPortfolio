@@ -138,45 +138,47 @@ function App() {
       <header
         className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}
       >
-        <a
-          href="#"
-          className="logo"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          <span className="logo-photo-wrap">
-            <img
-              src={myPhoto}
-              alt=""
-              className="logo-photo"
-              width="44"
-              height="44"
-            />
-          </span>
-          <span className="logo-wordmark">
-            <span className="logo-name logo-name--first">{logoFirstName}</span>
-            {logoRestName ? (
-              <>
-                <span className="logo-name-sep" aria-hidden="true" />
-                <span className="logo-name logo-name--last">{logoRestName}</span>
-              </>
-            ) : null}
-          </span>
-        </a>
+        <div className="site-header__top">
+          <a
+            href="#"
+            className="logo"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <span className="logo-photo-wrap">
+              <img
+                src={myPhoto}
+                alt=""
+                className="logo-photo"
+                width="44"
+                height="44"
+              />
+            </span>
+            <span className="logo-wordmark">
+              <span className="logo-name logo-name--first">{logoFirstName}</span>
+              {logoRestName ? (
+                <>
+                  <span className="logo-name-sep" aria-hidden="true" />
+                  <span className="logo-name logo-name--last">{logoRestName}</span>
+                </>
+              ) : null}
+            </span>
+          </a>
 
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-expanded={navOpen}
-          aria-label="Menu"
-          onClick={() => setNavOpen((o) => !o)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-expanded={navOpen}
+            aria-label="Menu"
+            onClick={() => setNavOpen((o) => !o)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
 
         <nav className={`site-nav ${navOpen ? "site-nav--open" : ""}`}>
           <ul>
