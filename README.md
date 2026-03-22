@@ -69,12 +69,6 @@ Most personal information lives in **`src/data/portfolio.js`**:
 ## Deploying on Vercel
 Live at:https://daudkhalils-portfolio.vercel.app/
 
-Connect the GitHub repository in the [Vercel dashboard](https://vercel.com/) or deploy with the [Vercel CLI](https://vercel.com/docs/cli):
-
-```bash
-npx vercel
-```
-
 ## Project structure
 
 ```
