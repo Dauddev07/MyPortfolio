@@ -4,7 +4,7 @@
 
 export const profile = {
   name: 'Daud Khalil',
-  title: 'Frontend Developer',
+  title: 'Frontend & MERN Developer',
   tagline:
     'I build interactive, responsive front-end websites that work beautifully on phones, tablets, and laptops—clean UI, smooth motion, and layouts that adapt to every screen.',
   bio: `I'm a frontend web developer from Bahawalpur, Pakistan, pursuing a Bachelors in Computer Science at Islamia University of Bahawalpur (2023–2027). I enjoy turning ideas into polished interfaces: semantic HTML, modern CSS, JavaScript, React.js, and Bootstrap when it speeds things up. I'm always leveling up on accessibility, performance, and mobile-first design.`,
@@ -32,6 +32,12 @@ export const skillCategories = [
     title: 'Frameworks & UI',
     blurb: 'Component-driven interfaces and layout systems.',
     skills: ['React.js', 'Bootstrap'],
+  },
+  {
+    id: 'mern',
+    title: 'Backend & database',
+    blurb: 'API development, data modeling, and authentication flows.',
+    skills: ['Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT'],
   },
   {
     id: 'delivery',
@@ -71,13 +77,25 @@ export const projects = [
   },
 ]
 
+export const mernProjects = [
+  {
+    id: 'm1',
+    name: 'BeanCraft (MERN Full-Stack)',
+    description:
+      'Full-stack coffee shop app with customer storefront, profile/orders, and admin dashboard. Includes auth, order lifecycle, reviews, and live status updates.',
+    tags: ['MERN', 'MongoDB', 'Express', 'React', 'Node.js'],
+    liveUrl: 'https://beancraft-mern.vercel.app/',
+    repoUrl: 'https://github.com/Dauddev07/beancraft-mern',
+  },
+]
+
 export const experience = [
   {
-    role: 'Frontend Developer',
+    role: 'Frontend & MERN Developer',
     company: 'Personal & academic projects',
     period: '2023 — Present',
     detail:
-      'Shipping responsive sites and SPAs with React, focusing on touch-friendly controls, readable typography, and layouts that scale from mobile to desktop.',
+      'Shipping responsive UIs with React and building full-stack MERN apps with Express APIs, MongoDB models, and practical auth/order flows.',
   },
 ]
 
