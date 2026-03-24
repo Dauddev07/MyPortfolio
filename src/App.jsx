@@ -4,6 +4,7 @@ import {
   socialLinks,
   skillCategories,
   projects,
+  mernProjects,
   experience,
   education,
 } from "./data/portfolio";
@@ -88,7 +89,8 @@ function SocialIcon({ label, className }) {
 const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
+  { id: "projects", label: "Front-end projects" },
+  { id: "mern-projects", label: "MERN" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
@@ -272,7 +274,7 @@ function App() {
             <p className="section-eyebrow">Tech stack</p>
             <h2>Skills</h2>
             <p className="section-lead">
-              Technologies I use to design, build, and ship frontend experiences.
+              Technologies I use to design, build, and ship frontend and full-stack web apps.
             </p>
           </div>
           <div className="skill-category-grid">
@@ -306,9 +308,9 @@ function App() {
 
         <section id="projects" className="section">
           <div className="section-head">
-            <h2>Projects</h2>
+            <h2>Front-end projects</h2>
             <p className="section-lead">
-              Selected frontend work—live demos and GitHub sources.
+              Selected frontend work with live demos and GitHub sources.
             </p>
           </div>
           <div className="project-grid">
@@ -357,11 +359,64 @@ function App() {
           </div>
         </section>
 
+        <section id="mern-projects" className="section">
+          <div className="section-head">
+            <h2>MERN projects</h2>
+            <p className="section-lead">
+              Full-stack projects built with MongoDB, Express, React, and Node.js.
+            </p>
+          </div>
+          <div className="project-grid">
+            {mernProjects.map((p, i) => (
+              <article
+                key={p.id}
+                className="project-card card"
+                style={{ "--stagger": i }}
+              >
+                <div className="project-card-top">
+                  <span className="project-index" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{p.name}</h3>
+                </div>
+                <p className="project-desc">{p.description}</p>
+                <ul className="project-tags">
+                  {p.tags.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+                <div className="project-links">
+                  {p.liveUrl ? (
+                    <a
+                      className="btn btn-small btn-primary"
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Live site
+                    </a>
+                  ) : null}
+                  {p.repoUrl ? (
+                    <a
+                      className="btn btn-small btn-ghost"
+                      href={p.repoUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Source
+                    </a>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="experience" className="section">
           <div className="section-head">
             <h2>Experience & education</h2>
             <p className="section-lead">
-              What I&apos;m focused on and where I study.
+              My current development focus and education journey.
             </p>
           </div>
           <div className="two-col">
