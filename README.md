@@ -67,7 +67,19 @@ Most personal information lives in **`src/data/portfolio.js`**:
 **Site title:** edit `<title>` in `index.html` if you change your name or branding.
 
 ## Deploying on Vercel
-Live at:https://daudkhalils-portfolio.vercel.app/
+Live at: <https://daudkhalils-portfolio.vercel.app/>
+
+The repo includes **`vercel.json`** with:
+
+- `npm run build` as the build command  
+- `dist` as the output directory  
+- SPA-style rewrites so client routes resolve to `index.html`
+
+Connect the GitHub repository in the [Vercel dashboard](https://vercel.com/) or deploy with the [Vercel CLI](https://vercel.com/docs/cli):
+
+```bash
+npx vercel
+```
 
 ## Project structure
 
