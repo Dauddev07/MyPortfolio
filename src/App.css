@@ -1,7 +1,8 @@
 .page {
   position: relative;
   min-height: 100svh;
-  overflow-x: clip;
+  /* Do not use overflow-x: clip here — it clips `position: fixed` mobile nav inside header */
+  overflow-x: visible;
 }
 
 .bg-grid {
@@ -362,20 +363,20 @@
   }
 }
 
+/* Header intro: opacity only — `transform` on `.site-header` breaks `position: fixed`
+   / dropdown positioning for mobile nav (fixed would be clipped to the header box). */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes headerEnter {
     from {
       opacity: 0;
-      transform: translateY(-16px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 
   .site-header--enter {
-    animation: headerEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: headerEnter 0.55s ease both;
   }
 }
 
@@ -385,6 +386,7 @@ main {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 2.5rem) 4rem;
+  overflow-x: clip;
 }
 
 .hero {
@@ -1552,40 +1554,54 @@ main .section.reveal.reveal--visible .project-card {
     display: flex;
   }
 
+  .site-header {
+    flex-wrap: wrap;
+    align-items: stretch;
+    overflow: visible;
+  }
+
   .site-header__top {
     position: relative;
     z-index: 2;
+    flex: 1 1 100%;
+    min-width: 0;
   }
 
+  /* Dropdown under the bar (avoids fixed + transformed ancestor bugs) */
   .site-nav {
-    position: fixed;
-    z-index: 1;
-    top: 0;
+    position: absolute;
+    z-index: 10;
     left: 0;
     right: 0;
-    bottom: 0;
-    width: 100vw;
-    max-width: 100vw;
+    top: 100%;
+    width: 100%;
     margin: 0;
-    padding: calc(4.75rem + env(safe-area-inset-top, 0px)) 1.5rem 1.5rem;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
     box-sizing: border-box;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    background: color-mix(in srgb, var(--surface) 96%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    transform: translateY(-100%);
+    background: color-mix(in srgb, var(--surface) 97%, transparent);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 2px solid var(--border);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition:
-      transform 0.3s ease,
-      opacity 0.3s ease,
-      visibility 0.3s;
+      max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s ease,
+      visibility 0.25s;
   }
 
   .site-nav--open {
-    transform: translateY(0);
+    max-height: min(75vh, 28rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 0.35rem;
+    padding-bottom: 1rem;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -1600,9 +1616,13 @@ main .section.reveal.reveal--visible .project-card {
     border-bottom: 1px solid var(--border);
   }
 
+  .site-nav li:last-child {
+    border-bottom: none;
+  }
+
   .site-nav a {
     display: block;
-    padding: 1rem 0;
+    padding: 0.95rem 0.35rem;
     font-size: 1.05rem;
   }
 
@@ -1610,8 +1630,8 @@ main .section.reveal.reveal--visible .project-card {
     color: var(--accent-2);
     background: color-mix(in srgb, var(--accent-soft) 70%, transparent);
     border-radius: 12px;
-    padding-inline: 0.85rem;
-    margin-inline: -0.85rem;
+    padding: 0.95rem 0.85rem;
+    margin: 0.1rem 0;
   }
 }
 
@@ -1662,6 +1682,10 @@ main .section.reveal.reveal--visible .project-card {
   .site-footer.reveal {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+  }
+
+  .site-nav {
     transition: none !important;
   }
 }
