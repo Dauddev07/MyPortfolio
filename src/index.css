@@ -38,6 +38,12 @@ body {
   background: #020617;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 #root {
   width: 100%;
   max-width: none;
