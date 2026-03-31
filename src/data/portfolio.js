@@ -6,8 +6,8 @@ export const profile = {
   name: 'Daud Khalil',
   title: 'Frontend & MERN Developer',
   tagline:
-    'I build interactive, responsive front-end websites that work beautifully on phones, tablets, and laptops—clean UI, smooth motion, and layouts that adapt to every screen.',
-  bio: `I'm a frontend web developer from Bahawalpur, Pakistan, pursuing a Bachelors in Computer Science at Islamia University of Bahawalpur (2023–2027). I enjoy turning ideas into polished interfaces: semantic HTML, modern CSS, JavaScript, React.js, and Bootstrap when it speeds things up. I'm always leveling up on accessibility, performance, and mobile-first design.`,
+    'I am a Frontend Developer specializing in React, with experience in full-stack development using the MERN stack (MongoDB, Express, React, Node.js).',
+  bio: `I am a Frontend Developer specializing in React, with experience in full-stack development using the MERN stack (MongoDB, Express, React, Node.js). I'm from Bahawalpur, Pakistan, pursuing a Bachelors in Computer Science at Islamia University of Bahawalpur (2023–2027). I enjoy turning ideas into polished interfaces: semantic HTML, modern CSS, JavaScript, React.js, and Bootstrap when it speeds things up. I'm always leveling up on accessibility, performance, and mobile-first design.`,
   email: 'daudkhalil101@gmail.com',
   phone: '+92 327 6058089',
   phoneTel: 'tel:+923276058089',
