@@ -86,6 +86,15 @@ function SocialIcon({ label, className }) {
   return null;
 }
 
+const navSectionIds = [
+  "about",
+  "skills",
+  "projects",
+  "mern-projects",
+  "experience",
+  "contact",
+];
+
 const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
@@ -103,11 +112,60 @@ function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [activeNavId, setActiveNavId] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    let ticking = false;
+
+    function updateActiveNav() {
+      const headerEl = document.querySelector(".site-header");
+      const headerH = headerEl?.getBoundingClientRect().height ?? 72;
+      const scrollY = window.scrollY;
+      const heroHandoff = 96;
+
+      if (scrollY < heroHandoff) {
+        setActiveNavId(null);
+        return;
+      }
+
+      const marker = scrollY + headerH + 28;
+      let current = null;
+
+      for (const id of navSectionIds) {
+        const section = document.getElementById(id);
+        if (!section) continue;
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (top <= marker) {
+          current = id;
+        }
+      }
+
+      setActiveNavId(current);
+    }
+
+    function onScrollOrResize() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          ticking = false;
+          updateActiveNav();
+        });
+        ticking = true;
+      }
+    }
+
+    updateActiveNav();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -195,6 +253,8 @@ function App() {
                 className="logo-photo"
                 width="44"
                 height="44"
+                loading="lazy"
+                decoding="async"
               />
             </span>
             <span className="logo-wordmark">
@@ -227,8 +287,11 @@ function App() {
               <li key={id}>
                 <a
                   href={`#${id}`}
+                  className={activeNavId === id ? "is-active" : undefined}
+                  aria-current={activeNavId === id ? "location" : undefined}
                   onClick={(e) => {
                     e.preventDefault();
+                    setActiveNavId(id);
                     scrollToId(id);
                     setNavOpen(false);
                   }}
@@ -290,6 +353,10 @@ function App() {
                 src={myPhoto}
                 alt={`${profile.name}, ${profile.title}`}
                 className="hero-avatar"
+                width={640}
+                height={640}
+                decoding="async"
+                fetchPriority="high"
               />
               <div className="hero-card-glow" aria-hidden="true" />
             </div>
@@ -513,6 +580,8 @@ function App() {
                     className="contact-panel-photo"
                     width="112"
                     height="112"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="contact-panel-intro">
