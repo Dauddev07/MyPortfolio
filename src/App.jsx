@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   profile,
   socialLinks,
@@ -117,6 +117,43 @@ function App() {
     };
   }, [navOpen]);
 
+  useLayoutEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+    document
+      .querySelectorAll(".reveal")
+      .forEach((el) => el.classList.add("reveal--visible"));
+  }, []);
+
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const nodes = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal--visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+    );
+
+    nodes.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -138,7 +175,9 @@ function App() {
       <div className="bg-glow bg-glow--2" aria-hidden="true" />
 
       <header
-        className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}
+        className={`site-header site-header--enter ${
+          scrolled ? "site-header--scrolled" : ""
+        }`}
       >
         <div className="site-header__top">
           <a
@@ -257,7 +296,7 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="section section-about">
+        <section id="about" className="section section-about reveal">
           <div className="section-head">
             <h2>About</h2>
             <p className="section-lead">
@@ -269,7 +308,7 @@ function App() {
           </div>
         </section>
 
-        <section id="skills" className="section section-skills">
+        <section id="skills" className="section section-skills reveal">
           <div className="section-head">
             <p className="section-eyebrow">Tech stack</p>
             <h2>Skills</h2>
@@ -306,7 +345,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="section">
+        <section id="projects" className="section reveal">
           <div className="section-head">
             <h2>Front-end projects</h2>
             <p className="section-lead">
@@ -359,7 +398,7 @@ function App() {
           </div>
         </section>
 
-        <section id="mern-projects" className="section">
+        <section id="mern-projects" className="section reveal">
           <div className="section-head">
             <h2>MERN projects</h2>
             <p className="section-lead">
@@ -412,7 +451,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="section">
+        <section id="experience" className="section reveal">
           <div className="section-head">
             <h2>Experience & education</h2>
             <p className="section-lead">
@@ -456,7 +495,7 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="section section-contact">
+        <section id="contact" className="section section-contact reveal">
           <div className="section-head">
             <h2>Get in touch</h2>
             <p className="section-lead">
@@ -549,7 +588,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer reveal">
         <p>Copyright © DaudKhalil All Rights Reserved</p>
       </footer>
     </div>
