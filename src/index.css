@@ -1,5 +1,7 @@
 /* High-contrast dark theme (always on) */
 :root {
+  /* Portrait crop: nudge vertical focus so head/shoulders sit nicely in frames */
+  --photo-focus: center 28%;
   color-scheme: dark;
   --text-heading: #ffffff;
   --text-body: #e4e4e7;
