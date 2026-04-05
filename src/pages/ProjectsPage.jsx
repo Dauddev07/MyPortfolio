@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { allProjects, homeFeaturedProjectCount } from "../data/portfolio";
 
@@ -6,9 +6,10 @@ export function ProjectsPage() {
   const location = useLocation();
   const [visibleCount, setVisibleCount] = useState(homeFeaturedProjectCount);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.state?.showAllProjects) {
       setVisibleCount(allProjects.length);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [location.state]);
 
