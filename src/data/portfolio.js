@@ -56,7 +56,7 @@ export const homeFeaturedProjectCount = 3;
 export const allProjects = [
   {
     id: "invoice",
-    name: "Invoice Studio",
+    name: "Invoice · Generator",
     description:
       "Production-style invoice generator: live preview, templates, line items with drag-and-drop, tax/discounts, PDF/PNG export, and local persistence — no backend required.",
     extendedDescription:
@@ -67,7 +67,7 @@ export const allProjects = [
   },
   {
     id: "medflow",
-    name: "MedFlow — Clinic management",
+    name: "MedFlow · Clinic",
     description:
       "Portfolio-ready clinic dashboard: patients, appointments with doctor availability, prescriptions, dark mode, and local persistence — mock data, no API.",
     extendedDescription:
@@ -78,7 +78,7 @@ export const allProjects = [
   },
   {
     id: "admin",
-    name: "Nexus admin dashboard",
+    name: "Nexus · Admin",
     description:
       "Responsive admin UI with charts, data tables, theme toggle, toasts, and a mock login flow — no backend.",
     extendedDescription:
@@ -89,7 +89,7 @@ export const allProjects = [
   },
   {
     id: "coffee",
-    name: "BeanCraft Coffee Shop",
+    name: "BeanCraft · Coffee",
     description:
       "Frontend for a coffee shop experience—menus, branding, and an interactive UI. Deployed on Vercel.",
     extendedDescription:
@@ -100,7 +100,7 @@ export const allProjects = [
   },
   {
     id: "fitness",
-    name: "333 Fitness Gym",
+    name: "333 · Fitness",
     description:
       "Bold gym landing page with classes, trainers, plans, BMI tool, and strong visual hierarchy—built for engagement on all devices.",
     extendedDescription:
@@ -111,7 +111,7 @@ export const allProjects = [
   },
   {
     id: "attendance",
-    name: "Attendance Manager",
+    name: "Attendance · Manager",
     description:
       "Client-side tool for organizing attendance records without a server.",
     extendedDescription:
@@ -122,7 +122,7 @@ export const allProjects = [
   },
   {
     id: "portfolio",
-    name: "Personal portfolio",
+    name: "Developer · Portfolio",
     description:
       "This site — React, Vite, and a data-driven layout with projects, services, and CV.",
     extendedDescription:
