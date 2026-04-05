@@ -147,7 +147,11 @@ export function HomePage() {
           ))}
         </div>
         <div className="section-actions">
-          <Link className="btn btn-primary" to="/projects">
+          <Link
+            className="btn btn-primary"
+            to="/projects"
+            state={{ showAllProjects: true }}
+          >
             Show more projects
           </Link>
         </div>
