@@ -193,6 +193,7 @@ export function SiteHeader() {
           <li>
             <Link
               to="/projects"
+              state={{ showAllProjects: true }}
               className={location.pathname === "/projects" ? "is-active" : undefined}
               aria-current={
                 location.pathname === "/projects" ? "page" : undefined
