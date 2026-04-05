@@ -2,7 +2,7 @@
  * Portfolio content — update projects or links here as you ship more work.
  */
 
-export const resumePdfPath = '/daud-khalil-resume.pdf'
+export const resumePdfPath = '/daud-khalil-resume.pdf' 
 
 export const profile = {
   name: 'Daud Khalil',
