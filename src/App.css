@@ -806,19 +806,29 @@ main {
 }
 
 .project-card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 0.85rem;
+  row-gap: 0;
+  min-height: 2.85rem;
 }
 
 .project-card-top h3 {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.35;
+  min-height: calc(1.05rem * 1.35 * 2);
   color: var(--text-heading);
   transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-wrap: balance;
 }
 
 .project-index {
@@ -828,6 +838,9 @@ main {
   color: var(--accent);
   opacity: 0.9;
   transition: color 0.3s ease;
+  line-height: 1.35;
+  padding-top: 0.22em;
+  flex-shrink: 0;
 }
 
 .project-desc {
