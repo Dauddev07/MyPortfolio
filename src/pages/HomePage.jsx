@@ -10,6 +10,7 @@ import {
 } from "../data/portfolio";
 import myPhoto from "../assets/Images/MyPhoto.jpeg";
 import { ProjectCard } from "../components/ProjectCard";
+import { ContactSection } from "../components/ContactSection";
 
 function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -204,6 +205,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <ContactSection />
     </main>
   );
 }
