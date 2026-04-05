@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { profile } from "../data/portfolio";
 import myPhoto from "../assets/Images/MyPhoto.jpeg";
 
-const sectionIds = ["about", "skills", "projects", "experience"];
+const sectionIds = ["about", "skills", "projects", "experience", "contact"];
 
 export function SiteHeader() {
   const [navOpen, setNavOpen] = useState(false);
@@ -228,6 +228,23 @@ export function SiteHeader() {
               }}
             >
               Experience
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#contact"
+              className={
+                isHome && activeNavId === "contact" ? "is-active" : undefined
+              }
+              aria-current={
+                isHome && activeNavId === "contact" ? "location" : undefined
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                goSection("contact");
+              }}
+            >
+              Contact
             </a>
           </li>
         </ul>
