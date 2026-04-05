@@ -7,7 +7,6 @@ import {
   homeFeaturedProjectCount,
   experience,
   education,
-  resumePdfPath,
 } from "../data/portfolio";
 import myPhoto from "../assets/Images/MyPhoto.jpeg";
 import { ProjectCard } from "../components/ProjectCard";
@@ -56,13 +55,6 @@ export function HomePage() {
             <Link className="btn btn-ghost" to="/cv">
               See CV
             </Link>
-            <a
-              className="btn btn-ghost"
-              href={resumePdfPath}
-              download={`${profile.name.replace(/\s+/g, "-")}-Resume.pdf`}
-            >
-              Download CV
-            </a>
           </div>
           <div className="hero-meta">
             <span className="meta-pill">{profile.location}</span>
