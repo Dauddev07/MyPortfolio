@@ -1,11 +1,17 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { allProjects, homeFeaturedProjectCount } from "../data/portfolio";
 
-const initialVisible = homeFeaturedProjectCount;
-
 export function ProjectsPage() {
-  const [visibleCount, setVisibleCount] = useState(initialVisible);
+  const location = useLocation();
+  const [visibleCount, setVisibleCount] = useState(homeFeaturedProjectCount);
+
+  useEffect(() => {
+    if (location.state?.showAllProjects) {
+      setVisibleCount(allProjects.length);
+    }
+  }, [location.state]);
+
   const hasMore = visibleCount < allProjects.length;
 
   return (
