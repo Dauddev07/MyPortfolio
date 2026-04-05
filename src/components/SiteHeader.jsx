@@ -76,6 +76,16 @@ export function SiteHeader() {
     };
   }, [navOpen]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const closeIfDesktop = () => {
+      if (mq.matches) setNavOpen(false);
+    };
+    mq.addEventListener("change", closeIfDesktop);
+    closeIfDesktop();
+    return () => mq.removeEventListener("change", closeIfDesktop);
+  }, []);
+
   function scrollToSection(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }
@@ -145,6 +155,19 @@ export function SiteHeader() {
 
       <nav className={`site-nav ${navOpen ? "site-nav--open" : ""}`}>
         <ul>
+          {!isHome ? (
+            <li>
+              <Link
+                to="/"
+                onClick={() => {
+                  setNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Home
+              </Link>
+            </li>
+          ) : null}
           <li>
             <a
               href="/#about"
@@ -189,43 +212,6 @@ export function SiteHeader() {
             >
               Featured work
             </a>
-          </li>
-          <li>
-            <Link
-              to="/projects"
-              state={{ showAllProjects: true }}
-              className={location.pathname === "/projects" ? "is-active" : undefined}
-              aria-current={
-                location.pathname === "/projects" ? "page" : undefined
-              }
-              onClick={() => setNavOpen(false)}
-            >
-              All projects
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/services"
-              className={location.pathname === "/services" ? "is-active" : undefined}
-              aria-current={
-                location.pathname === "/services" ? "page" : undefined
-              }
-              onClick={() => setNavOpen(false)}
-            >
-              Request services
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/cv"
-              className={location.pathname === "/cv" ? "is-active" : undefined}
-              aria-current={
-                location.pathname === "/cv" ? "page" : undefined
-              }
-              onClick={() => setNavOpen(false)}
-            >
-              Resume
-            </Link>
           </li>
           <li>
             <a
